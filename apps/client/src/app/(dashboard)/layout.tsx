@@ -7,6 +7,7 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
      await requireOnboarded();
     return (
+        <div className="min-h-svh bg-white text-zinc-950">
         <SidebarProvider
             style={
                 {
@@ -29,6 +30,7 @@ const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
                 </div>
             </SidebarInset>
         </SidebarProvider>
+        </div>
     )
 }
 

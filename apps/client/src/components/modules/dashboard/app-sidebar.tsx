@@ -15,38 +15,17 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { DashboardSquare01Icon, Menu01Icon, ChartHistogramIcon, Folder01Icon, UserGroupIcon, Camera01Icon, File01Icon, Settings05Icon, HelpCircleIcon, SearchIcon, Database01Icon, Analytics01Icon, CommandIcon, Fire02FreeIcons } from "@hugeicons/core-free-icons"
+import { Menu01Icon, Settings05Icon, HelpCircleIcon, SearchIcon, Fire02FreeIcons } from "@hugeicons/core-free-icons"
 import { useAuthStore } from "@/store/key-store"
 import Link from "next/link"
 
 const data = {
   navMain: [
     {
-      title: "Ranking",
-      url: "/ranking",
+      title: "Publish",
+      url: "publish",
       icon: (
         <HugeiconsIcon icon={Menu01Icon} strokeWidth={2} />
-      ),
-    },
-    {
-      title: "Analyse",
-      url: "/analyse",
-      icon: (
-        <HugeiconsIcon icon={ChartHistogramIcon} strokeWidth={2} />
-      ),
-    },
-    {
-      title: "History",
-      url: "/history",
-      icon: (
-        <HugeiconsIcon icon={Folder01Icon} strokeWidth={2} />
-      ),
-    },
-    {
-      title: "Profile",
-      url: "/profile",
-      icon: (
-        <HugeiconsIcon icon={UserGroupIcon} strokeWidth={2} />
       ),
     },
   ],

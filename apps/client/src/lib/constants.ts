@@ -1,1 +1,1 @@
-export const uploadthingsURI = "";
+export const uploadthingsURI = "https://utfs.io";
