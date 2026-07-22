@@ -2,8 +2,8 @@
 
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
-import { setAuthCookie } from '@/lib/auth';
-import type { User } from '@/types/auth';
+import { setAuthCookie } from '@/lib/key';
+import type { User } from '@/types/key';
 
 interface AuthState {
     user: User | null;

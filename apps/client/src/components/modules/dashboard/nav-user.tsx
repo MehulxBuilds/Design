@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/sidebar"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { MoreVerticalCircle01Icon, UserCircle02Icon, CreditCardIcon, Notification03Icon, Logout01Icon } from "@hugeicons/core-free-icons"
-import { User } from "@/types/auth"
+import { User } from "@/types/key"
 
 export function NavUser({
   user,

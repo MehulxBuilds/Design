@@ -1,11 +1,13 @@
 import { z } from "zod";
 
 export const EnvSchema = z.object({
-    NEXT_PUBLIC_API_URL: z.string().url(),
+    DATABASE_URL: z.string().url(),
+    UPLOADTHING_TOKEN: z.string(),
 });
 
 export type WebEnv = z.infer<typeof EnvSchema>;
 
 export const env = EnvSchema.parse({
-    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+    DATABASE_URL: process.env.DATABASE_URL,
+    UPLOADTHING_TOKEN: process.env.UPLOADTHING_TOKEN,
 });

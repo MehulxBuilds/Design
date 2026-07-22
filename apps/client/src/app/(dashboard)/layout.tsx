@@ -1,4 +1,4 @@
-import { requireOnboarded } from '@/utils/auth';
+import { requireOnboarded } from '@/utils';
 
 import { AppSidebar } from "@/components/modules/dashboard/app-sidebar"
 import { SiteHeader } from "@/components/modules/dashboard/site-header"

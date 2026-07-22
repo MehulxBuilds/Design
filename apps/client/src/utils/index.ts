@@ -2,7 +2,6 @@
 
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { getUserApi } from "@/lib/client/auth";
 
 async function getSession() {
     const cookieStore = await cookies();
@@ -11,8 +10,8 @@ async function getSession() {
     if (!token) return null;
 
     try {
-        const data = await getUserApi(token);
-        return data.user;
+        // const data = await getUserApi(token);
+        // return data.user;
     } catch {
         return null;
     }
@@ -35,3 +34,5 @@ export const requireOnboarded = async () => {
     if (!user.name) redirect("/onboarding");
     return user;
 };
+
+export const errorMessage = (error: unknown) => error instanceof Error ? error.message : "Something went wrong";

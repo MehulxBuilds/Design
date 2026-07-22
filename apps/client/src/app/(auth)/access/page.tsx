@@ -1,5 +1,4 @@
-import { LoginForm } from "@/components/modules/authentication/login-form"
-import Image from "next/image"
+import Image from "next/image";
 
 export default function Auth03() {
     return (
@@ -19,7 +18,7 @@ export default function Auth03() {
 
                     <div className="flex flex-col items-center justify-center p-8 md:p-12 lg:p-16 bg-background absolute top-2.5 right-2.5 bottom-2.5 z-10 w-1/2">
                         <div className="w-full max-w-[380px]">
-                            <LoginForm />
+                            
                         </div>
                     </div>
                 </div>
@@ -27,4 +26,4 @@ export default function Auth03() {
             </div>
         </div>
     )
-}
+};

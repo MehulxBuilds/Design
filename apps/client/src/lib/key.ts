@@ -1,11 +1,4 @@
-import { treaty } from "@elysia/eden";
-import type { App } from "@repo/server/src/index";
-import { env } from "./env";
 import { useAuthStore } from "@/store/auth-store";
-
-export const api = treaty<App>(
-    env.NEXT_PUBLIC_API_URL!
-);
 
 export function setAuthCookie(token: string) {
     if (typeof document === "undefined") return;
