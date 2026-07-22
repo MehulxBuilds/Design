@@ -1,25 +1,15 @@
 "use server";
 
-import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { getAccessKeySession } from "@/lib/access";
 
 async function getSession() {
-    const cookieStore = await cookies();
-    const token = cookieStore.get("token")?.value;
-
-    if (!token) return null;
-
-    try {
-        // const data = await getUserApi(token);
-        // return data.user;
-    } catch {
-        return null;
-    }
+    try { return await getAccessKeySession(); } catch { return null; }
 }
 
 export const requireSession = async () => {
     const user = await getSession();
-    if (!user) redirect("/sign-in");
+    if (!user) redirect("/access");
     return user;
 };
 
@@ -30,9 +20,5 @@ export const requireNotSession = async () => {
 };
 
 export const requireOnboarded = async () => {
-    const user = await requireSession();
-    if (!user.name) redirect("/onboarding");
-    return user;
+    return requireSession();
 };
-
-export const errorMessage = (error: unknown) => error instanceof Error ? error.message : "Something went wrong";

@@ -1,12 +1,22 @@
 "use client";
 
+import { useEffect } from "react";
 import { Toaster } from "./ui/sonner";
 import QueryProvider from "./query-client";
 import { ThemeProvider } from "./theme-provider";
-import { useCurrentUser } from "@/hooks/use-auth";
+import { useKeyMe } from "@/hooks/use-key";
+import { useAuthStore } from "@/store/key-store";
 
 const AuthInitializer = () => {
-    useCurrentUser();
+    const token = useAuthStore((state) => state.token);
+    const validateKey = useKeyMe();
+
+    useEffect(() => {
+        if (token) validateKey.mutate({ key: token });
+        // Revalidate only when the persisted credential changes.
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [token]);
+
     return null;
 };
 

@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/sidebar"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { DashboardSquare01Icon, Menu01Icon, ChartHistogramIcon, Folder01Icon, UserGroupIcon, Camera01Icon, File01Icon, Settings05Icon, HelpCircleIcon, SearchIcon, Database01Icon, Analytics01Icon, CommandIcon, Fire02FreeIcons } from "@hugeicons/core-free-icons"
-import { useAuthStore } from "@/store/auth-store"
+import { useAuthStore } from "@/store/key-store"
 import Link from "next/link"
 
 const data = {
@@ -76,7 +76,7 @@ const data = {
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const user = useAuthStore((v) => v.user);
+  const accessKey = useAuthStore((v) => v.accessKey);
 
   return (
     <Sidebar collapsible="offcanvas" {...props}>
@@ -100,7 +100,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={user!} />
+        {accessKey && <NavUser user={accessKey} />}
       </SidebarFooter>
     </Sidebar>
   )

@@ -8,4 +8,4 @@ export type KeyAll = KeyAllRes;
 export interface KeyGenRes { success: boolean; message: string; key?: AccessKeyRecord; }
 export type KeyGen = KeyGenRes;
 export interface KeyMeRes { success: boolean; message: string; key?: AccessKeyRecord }
-export interface KeyMe { key: String }
+export interface KeyMe { key: string }

@@ -1,29 +1,62 @@
-import Image from "next/image";
+"use client";
 
-export default function Auth03() {
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { KeyRound } from "lucide-react";
+import { toast } from "sonner";
+import { useKeyMe } from "@/hooks/use-key";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+
+export default function Access() {
+    const [key, setKey] = useState("");
+    const access = useKeyMe();
+    const router = useRouter();
+
+    const submit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const value = key.trim();
+        if (!value) return;
+
+        try {
+            await access.mutateAsync({ key: value });
+            toast.success("Access granted");
+            router.push("/dashboard");
+        } catch (error) {
+            toast.error(error instanceof Error ? error.message : "Invalid access key");
+        }
+    };
+
     return (
-        <div className="flex rounded-[26px] items-cente justify-center min-h-svh p-2 bg-zinc-50 dark:bg-zinc-950">
-            <div className="flex w-full max-h-fit overflow-hidden bg-background">
-
-
-                <div className="relative w-full bg-zinc-100">
-                    <Image
-                        src="/image/auth/auth.png"
-                        alt="Authentication Background"
-                        width={20}
-                        height={20}
-                        unoptimized
-                        className="object-cover w-full h-full"
-                    />
-
-                    <div className="flex flex-col items-center justify-center p-8 md:p-12 lg:p-16 bg-background absolute top-2.5 right-2.5 bottom-2.5 z-10 w-1/2">
-                        <div className="w-full max-w-[380px]">
-                            
-                        </div>
-                    </div>
+        <main className="flex min-h-svh items-center justify-center bg-zinc-50 p-4 dark:bg-zinc-950">
+            <section className="w-full max-w-md rounded-3xl border bg-background p-8 shadow-xl">
+                <div className="mb-8 flex size-12 items-center justify-center rounded-2xl bg-primary text-primary-foreground">
+                    <KeyRound className="size-5" />
                 </div>
+                <h1 className="text-2xl font-semibold tracking-tight">Connect your access key</h1>
+                <p className="mt-2 text-sm text-muted-foreground">
+                    Your key acts as your wallet and is stored on this device.
+                </p>
 
-            </div>
-        </div>
-    )
-};
+                <form className="mt-8 space-y-5" onSubmit={submit}>
+                    <div className="space-y-2">
+                        <Label htmlFor="access-key">Access key</Label>
+                        <Input
+                            id="access-key"
+                            type="password"
+                            autoComplete="off"
+                            value={key}
+                            onChange={(event) => setKey(event.target.value)}
+                            placeholder="dk_..."
+                            disabled={access.isPending}
+                        />
+                    </div>
+                    <Button className="w-full" type="submit" disabled={!key.trim() || access.isPending}>
+                        {access.isPending ? "Checking key..." : "Grant access"}
+                    </Button>
+                </form>
+            </section>
+        </main>
+    );
+}
