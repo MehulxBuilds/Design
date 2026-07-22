@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import Image from "next/image";
 
 const EditDesignModal = ({ design, children }: { design: DesignRecord; children: React.ReactNode }) => {
     const [open, setOpen] = useState(false);
@@ -115,7 +116,7 @@ const EditDesignModal = ({ design, children }: { design: DesignRecord; children:
                         <Label>Image</Label>
                         <div ref={mountDropzone} className="group relative flex h-44 cursor-pointer items-center justify-center overflow-hidden rounded-xl border border-dashed border-zinc-300 bg-zinc-50 text-sm text-zinc-500 transition hover:border-zinc-400">
                             <div className="dz-message flex size-full items-center justify-center">
-                                <img src={previewUrl} alt="Design preview" className="h-full w-full object-contain" />
+                                <Image width={0} height={0} src={previewUrl} alt="Design preview" className="h-full w-full object-contain" />
                                 <div className="absolute inset-0 flex items-center justify-center bg-black/0 text-white opacity-0 transition group-hover:bg-black/40 group-hover:opacity-100">
                                     <span className="rounded-full bg-black/60 px-3 py-1.5 text-xs">Drop or click to replace</span>
                                 </div>

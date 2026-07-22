@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import Dropzone from "dropzone";
+import Image from "next/image";
 
 const CreateDesignModal = ({ children }: { children: React.ReactNode }) => {
     const [open, setOpen] = useState(false);
@@ -127,7 +128,7 @@ const CreateDesignModal = ({ children }: { children: React.ReactNode }) => {
                             <div className="dz-message flex size-full flex-col items-center justify-center">
                                 {previewUrl ? (
                                     <>
-                                    <img src={previewUrl} alt="Selected image preview" className="h-full w-full object-contain" />
+                                    <Image width={0} height={0} src={previewUrl} alt="Selected image preview" className="h-full w-full object-contain" />
                                     <div className="absolute inset-0 flex items-center justify-center bg-black/0 text-white opacity-0 transition group-hover:bg-black/40 group-hover:opacity-100">
                                         <span className="rounded-full bg-black/60 px-3 py-1.5 text-xs">Drop or click to replace</span>
                                     </div>

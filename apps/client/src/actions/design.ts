@@ -23,8 +23,10 @@ const uploadImage = async (image: Uint8Array, title: string) => {
 };
 
 export const designall = async (): Promise<DesignAllRes> => {
-  try {
-    await requireAccessKey();
+    try {
+        // This API Should be Public so that designes are publically visible
+        // await requireAccessKey();
+
         const rows = await client.design.findMany({ orderBy: { createdAt: "desc" } });
         const design = rows.map(withUrl);
         return { success: true, message: "Designs fetched successfully", design };
@@ -32,8 +34,8 @@ export const designall = async (): Promise<DesignAllRes> => {
 };
 
 export const designdel = async ({ id }: DesignDel): Promise<DesignDelRes> => {
-  try {
-    await requireAccessKey();
+    try {
+        await requireAccessKey();
         const existing = await client.design.findUnique({ where: { id } });
         if (!existing) return { success: false, message: "Design not found" };
         await utapi.deleteFiles(existing.key);
@@ -43,9 +45,9 @@ export const designdel = async ({ id }: DesignDel): Promise<DesignDelRes> => {
 };
 
 export const designgen = async (input: DesignGen): Promise<DesignGenRes> => {
-  let uploadedKey: string | undefined;
-  try {
-    await requireAccessKey();
+    let uploadedKey: string | undefined;
+    try {
+        await requireAccessKey();
         const uploaded = await uploadImage(input.image, input.title);
         uploadedKey = uploaded.key;
         const design = await client.design.create({ data: { title: input.title, description: input.description, key: uploaded.key, provider: "UPLOADTHINGS", updatedAt: new Date() } });
@@ -57,9 +59,9 @@ export const designgen = async (input: DesignGen): Promise<DesignGenRes> => {
 };
 
 export const designupd = async (input: DesignUpd): Promise<DesignUpdRes> => {
-  let uploadedKey: string | undefined;
-  try {
-    await requireAccessKey();
+    let uploadedKey: string | undefined;
+    try {
+        await requireAccessKey();
         const existing = await client.design.findUnique({ where: { id: input.id } });
         if (!existing) return { success: false, message: "Design not found" };
         let key = input.key || existing.key;

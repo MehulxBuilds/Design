@@ -20,6 +20,7 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
+import Image from "next/image";
 
 const maskedKey = (key: string) => `${key.slice(0, 6)}••••••••${key.slice(-4)}`;
 
@@ -173,7 +174,7 @@ export default function PublishPage() {
                                 <div key={design.id} className="group relative aspect-square overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-100">
                                     <ViewDesignModal design={design}>
                                         <button type="button" className="absolute inset-0 cursor-zoom-in text-left" aria-label={`View ${design.title}`}>
-                                            <img src={design.url} alt={design.title} className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.03]" />
+                                            <Image width={0} height={0} src={design.url} alt={design.title} className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.03]" />
                                             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent px-4 pb-3 pt-8 text-white">
                                                 <p className="truncate text-sm font-medium">{design.title}</p>
                                             </div>
