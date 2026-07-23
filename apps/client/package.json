@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "keygen": "bun run scripts/key-gen.ts"
+    "keygen": "bun run scripts/key-gen.ts",
+    "preinstall": "prisma generate"
   },
   "dependencies": {
     "@base-ui/react": "^1.5.0",
@@ -21,6 +22,7 @@
     "@tanstack/react-query": "^5.101.0",
     "@tanstack/react-table": "^8.21.3",
     "@types/dropzone": "^5.7.9",
+    "@types/recharts": "^2.0.1",
     "@uploadthing/react": "^7.3.3",
     "axios": "^1.17.0",
     "class-variance-authority": "^0.7.1",
@@ -41,7 +43,7 @@
     "react-day-picker": "^10.0.1",
     "react-dom": "19.2.1",
     "react-resizable-panels": "^4.11.2",
-    "recharts": "3.8.0",
+    "recharts": "^3.10.0",
     "shadcn": "^4.11.0",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.6.0",
