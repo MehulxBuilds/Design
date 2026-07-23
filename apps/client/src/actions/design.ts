@@ -27,7 +27,7 @@ export const designall = async (): Promise<DesignAllRes> => {
         // This API Should be Public so that designes are publically visible
         // await requireAccessKey();
 
-        const rows = await client.design.findMany({ orderBy: { createdAt: "desc" } });
+        const rows = await client.design.findMany({ orderBy: { createdAt: "asc" } });
         const design = rows.map(withUrl);
         return { success: true, message: "Designs fetched successfully", design };
     } catch (error) { return { success: false, message: errorMessage(error), design: [] }; }

@@ -6,6 +6,7 @@ import QueryProvider from "./query-client";
 import { ThemeProvider } from "./theme-provider";
 import { useKeyMe } from "@/hooks/use-key";
 import { useAuthStore } from "@/store/key-store";
+import SmoothScroll from "@/components/smooth-scroll";
 
 const AuthInitializer = () => {
     const token = useAuthStore((state) => state.token);
@@ -23,6 +24,7 @@ const AuthInitializer = () => {
 const Providers = ({ children }: { children: React.ReactNode }) => {
     return (
         <QueryProvider>
+            <SmoothScroll />
             <AuthInitializer />
             <ThemeProvider
                 attribute="class"

@@ -42,7 +42,7 @@ const EditDesignModal = ({ design, children }: { design: DesignRecord; children:
                 autoProcessQueue: false,
                 clickable: true,
                 acceptedFiles: "image/*",
-                maxFilesize: 8,
+                maxFilesize: 64,
                 maxFiles: 1,
                 previewsContainer: false,
                 hiddenInputContainer: node,

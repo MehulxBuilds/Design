@@ -9,6 +9,7 @@ import CreateDesignModal from "@/components/modules/dashboard/create-design-moda
 import EditDesignModal from "@/components/modules/dashboard/edit-design-modal";
 import ViewDesignModal from "@/components/modules/dashboard/view-design-modal";
 import ViewKeyModal from "@/components/modules/dashboard/view-key-modal";
+import { useAuthStore } from "@/store/key-store";
 import {
     AlertDialog,
     AlertDialogAction,
@@ -25,6 +26,7 @@ import Image from "next/image";
 const maskedKey = (key: string) => `${key.slice(0, 6)}••••••••${key.slice(-4)}`;
 
 export default function PublishPage() {
+    const currentKey = useAuthStore();
     const keys = useAccessKeys();
     const designs = useDesigns();
     const createKey = useCreateAccessKey();
@@ -91,6 +93,12 @@ export default function PublishPage() {
                                         <KeyRound className="size-4 text-zinc-600" />
                                     </span>
                                     <code className="min-w-0 flex-1 truncate text-sm font-medium">{maskedKey(accessKey.key)}</code>
+                                    {currentKey?.token === accessKey.key && (
+                                        <span className="relative flex items-center justify-center size-3">
+                                            <span className="absolute inline-flex size-full rounded-full bg-green-400 opacity-75 animate-ping" />
+                                            <span className="relative inline-flex size-1.5 rounded-full bg-green-500" />
+                                        </span>
+                                    )}
                                     {accessKey.block && <span className="rounded-full bg-red-50 px-2 py-1 text-[11px] font-medium text-red-600">Blocked</span>}
                                     <ViewKeyModal accessKey={accessKey}>
                                         <Button
@@ -174,7 +182,16 @@ export default function PublishPage() {
                                 <div key={design.id} className="group relative aspect-square overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-100">
                                     <ViewDesignModal design={design}>
                                         <button type="button" className="absolute inset-0 cursor-zoom-in text-left" aria-label={`View ${design.title}`}>
-                                            <Image width={0} height={0} src={design.url} alt={design.title} className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.03]" />
+                                            <Image
+                                                src={design.url}
+                                                alt={design.title}
+                                                fill
+                                                sizes="(min-width: 1024px) 20vw, (min-width: 640px) 50vw, 100vw"
+                                                quality={72}
+                                                loading="lazy"
+                                                fetchPriority="low"
+                                                className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.03]"
+                                            />
                                             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent px-4 pb-3 pt-8 text-white">
                                                 <p className="truncate text-sm font-medium">{design.title}</p>
                                             </div>
@@ -209,7 +226,7 @@ export default function PublishPage() {
                                                         disabled={deleteDesign.isPending}
                                                         className="bg-red-600 text-white hover:bg-red-700"
                                                     >
-                                                        {deleteDesign.isPending ? "Deleting..." : "Delete key"}
+                                                        {deleteDesign.isPending ? "Deleting..." : "Delete Design"}
                                                     </AlertDialogAction>
                                                 </AlertDialogFooter>
                                             </AlertDialogContent>

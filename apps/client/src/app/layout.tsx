@@ -17,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Nox - Book Call's Without Getting Ghosted",
-  description: "Get Paid For Getting Ghosted",
+  title: "MehulxDesign - A collection of cool design by Mehul Prajapati!",
+  description: "A collection of cool design by Mehul Prajapati!",
 };
 
 export default function RootLayout({
