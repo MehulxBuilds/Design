@@ -2,7 +2,6 @@ import Link from "next/link";
 import { ArrowUpRight, Circle, Mail, PhoneCall, Sparkles } from "lucide-react";
 import { designall } from "@/actions/design";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
 import TextAnimation from "@/components/modules/dashboard/text-animation";
 import { EmailLogo, GithubLogo, InstagramLogo, LinkedInLogo, MediumLogo, PinterestLogo, TwitterLogo } from '@/components/modules/dashboard/data/svg-logo';
 import { Hint } from "@/components/ui/hint";
@@ -34,7 +33,7 @@ export default async function Home() {
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <Link href="https://github.com/MehulxBuilds/Design" target="_blank" className="rounded-full border border-zinc-200 px-3 py-1 text-xs font-medium transition hover:bg-zinc-100 flex items-center justify-center gap-1.5 text-neutral-400">
+              <Link href="https://github.com/MehulxBuilds/Design" target="_blank" aria-label={`View Design on GitHub, ${github} stars`} className="rounded-full border border-zinc-200 px-3 py-1 text-xs font-medium transition hover:bg-zinc-100 flex items-center justify-center gap-1.5 text-neutral-400">
                 <p>{github}</p>
                 <GithubLogo />
               </Link>
@@ -50,16 +49,16 @@ export default async function Home() {
                   alt="MehulxDesign"
                   width={80}
                   height={80}
-                  className="w-16 h-16 sm:w-26 sm:h-26 rounded-full object-cover border-3 border-red-900"
+                  className="w-20 h-20 sm:w-26 sm:h-26 rounded-full object-cover border-3 border-red-900"
                   priority
                 />
 
-                <Button className='font-medium tracking-tight bg-white px-1 h-4 flex items-center justify-center gap-2.5 rounded-full hover:bg-neutral-50 hover:border-neutral-300 text-neutral-800 transition-all absolute bottom-0 sm:bottom-1 right-0 sm:right-1.5'>
+                <div aria-label="Available for new projects" role="status" className='font-medium tracking-tight bg-white px-1 h-4 flex items-center justify-center gap-2.5 rounded-full text-neutral-800 absolute bottom-0 sm:bottom-1 right-0 sm:right-1.5'>
                   <span className="relative flex items-center justify-center size-3">
                     <span className="absolute inline-flex size-full rounded-full bg-green-400 opacity-75 animate-ping" />
                     <span className="relative inline-flex size-1.75 rounded-full bg-green-500" />
                   </span>
-                </Button>
+                </div>
               </div>
 
               <div className="hidden">
@@ -68,18 +67,21 @@ export default async function Home() {
               <IstClock />
             </div>
 
-            <div className="mt-20 flex flex-col justify-center gap-3">
-              <div className="text-sm text-zinc-400 flex items-center gap-1">
+            <div className="md:mt-20 mt-16 flex flex-col justify-center gap-3">
+              <div className="md:text-sm text-xs text-zinc-400 flex items-center gap-1">
                 <p>India •</p>
                 <div className='relative h-6 flex items-center overflow-hidden'>
                   <TextAnimation classname="" roles={ROLES} />
                 </div>
               </div>
-              <h1 className="max-w-sm text-3xl font-semibold tracking-[-1.2px] sm:text-3xl text-neutral-700">
+              <h1 className="max-w-sm text-[25px] font-semibold tracking-[-1px] md:tracking-[-1.2px] sm:text-3xl text-neutral-700 leading-8 md:leading-9">
                 Helping startups turn visitors into loyal customers through thoughtful design.
               </h1>
-              <p className="mt-1 max-w-md text-[14px] leading-5 text-neutral-600 tracking-[-0.2px]">
+              <p className="mt-1 max-w-md text-[13px] md:text-[14px] leading-5 text-neutral-600 tracking-[-0.2px] md:flex hidden">
                 I combine visual design, product thinking, and development to turn ideas into thoughtful identities and interfaces. This space collects selected work, experiments, and shipped projects.
+              </p>
+              <p className="mt-1 max-w-md text-[13px] md:text-[14px] leading-5 text-neutral-600 tracking-[-0.2px] flex md:hidden">
+                I design modern web and mobile experiences that simplify complex problems, build trust, and increase conversions.
               </p>
             </div>
 
@@ -101,43 +103,43 @@ export default async function Home() {
                   <span>{"The Social's I'm On"}</span>
                 </p>
               </div>
-              <div className='flex shrink-0 items-center justify-end gap-1.5 text-[13.5px]'>
-                <Hint label='Twitter' align='center' side='right'>
-                  <Link href={'https://x.com/MehulxBuilds'} target='_blank'>
+              <nav aria-label="Social links" className='flex shrink-0 items-center justify-end gap-1.5 text-[13.5px] [&_a]:rounded-sm [&_a]:outline-none [&_a]:focus-visible:ring-2 [&_a]:focus-visible:ring-zinc-500 [&_a]:focus-visible:ring-offset-2'>
+                <Hint label='Twitter' align='center' side='right' asChild>
+                  <Link href={'https://x.com/MehulxBuilds'} target='_blank' aria-label="Mehul on X (Twitter)">
                     <TwitterLogo />
                   </Link>
                 </Hint>
-                <Hint label='Github' align='center' side='right'>
-                  <Link href={'https://github.com/MehulxBuilds'} target='_blank'>
+                <Hint label='Github' align='center' side='right' asChild>
+                  <Link href={'https://github.com/MehulxBuilds'} target='_blank' aria-label="Mehul on GitHub">
                     <GithubLogo />
                   </Link>
                 </Hint>
-                <Hint label='LinkedIn' align='center' side='right'>
-                  <Link href={'https://www.linkedin.com/in/mehul-prajapati-816b28315/'} target='_blank'>
+                <Hint label='LinkedIn' align='center' side='right' asChild>
+                  <Link href={'https://www.linkedin.com/in/mehul-prajapati-816b28315/'} target='_blank' aria-label="Mehul on LinkedIn">
                     <LinkedInLogo />
                   </Link>
                 </Hint>
-                <Hint label='Instagram' align='center' side='right'>
-                  <Link href={'https://www.instagram.com/mehulxbuilds/'} target='_blank'>
+                <Hint label='Instagram' align='center' side='right' asChild>
+                  <Link href={'https://www.instagram.com/mehulxbuilds/'} target='_blank' aria-label="Mehul on Instagram">
                     <InstagramLogo />
                   </Link>
                 </Hint>
-                <Hint label='Medium' align='center' side='right'>
-                  <Link href={'https://medium.com/@mehulxbuilds'} target='_blank'>
+                <Hint label='Medium' align='center' side='right' asChild>
+                  <Link href={'https://medium.com/@mehulxbuilds'} target='_blank' aria-label="Mehul on Medium">
                     <MediumLogo />
                   </Link>
                 </Hint>
-                <Hint label='Pinterest' align='center' side='right'>
-                  <Link href={'https://github.com/MehulxBuilds'} target='_blank'>
+                <Hint label='Pinterest' align='center' side='right' asChild>
+                  <Link href={'https://github.com/MehulxBuilds'} target='_blank' aria-label="Mehul on Pinterest">
                     <PinterestLogo />
                   </Link>
                 </Hint>
-                <Hint label='Email' align='center' side='right'>
-                  <Link href={'mailto:mehulprajapati7456e@gmail.com'}>
+                <Hint label='Email' align='center' side='right' asChild>
+                  <Link href={'mailto:mehulprajapati7456e@gmail.com'} aria-label="Email Mehul">
                     <EmailLogo />
                   </Link>
                 </Hint>
-              </div>
+              </nav>
             </div>
           </div>
         </aside>

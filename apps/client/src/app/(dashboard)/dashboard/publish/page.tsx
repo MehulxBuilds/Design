@@ -238,7 +238,7 @@ export default function PublishPage() {
                         </div>
                     ) : (
                         <CreateDesignModal>
-                            <button className="flex min-h-40 w-full flex-col items-center justify-center rounded-2xl border border-dashed border-zinc-300 text-center hover:bg-zinc-50">
+                            <button type="button" className="flex min-h-40 w-full flex-col items-center justify-center rounded-2xl border border-dashed border-zinc-300 text-center hover:bg-zinc-50">
                                 <ImageIcon className="mb-3 size-7 text-zinc-400" />
                                 <p className="text-sm font-medium">No designs yet</p>
                                 <p className="text-xs text-zinc-500">Click to publish your first image.</p>

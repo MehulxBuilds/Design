@@ -1,22 +1,15 @@
-export interface WebEnv {
-    DATABASE_URL: string;
-    UPLOADTHING_TOKEN: string;
-}
+import { z } from "zod";
 
-const required = (name: keyof WebEnv, value: string | undefined) => {
-    if (!value) throw new Error(`${name} is not set`);
-    return value;
-};
+export const EnvSchema = z.object({
+    DATABASE_URL: z.string().url(),
+    NEXT_PUBLIC_SITE_URL: z.string().url(),
+    UPLOADTHING_TOKEN: z.string(),
+});
 
-const databaseUrl = required("DATABASE_URL", process.env.DATABASE_URL);
+export type WebEnv = z.infer<typeof EnvSchema>;
 
-try {
-    new URL(databaseUrl);
-} catch {
-    throw new Error("DATABASE_URL must be a valid URL");
-}
-
-export const env: WebEnv = {
-    DATABASE_URL: databaseUrl,
-    UPLOADTHING_TOKEN: required("UPLOADTHING_TOKEN", process.env.UPLOADTHING_TOKEN),
-};
+export const env = EnvSchema.parse({
+    DATABASE_URL: process.env.DATABASE_URL,
+    UPLOADTHING_TOKEN: process.env.UPLOADTHING_TOKEN,
+    NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
+});
