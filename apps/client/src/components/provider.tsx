@@ -7,6 +7,7 @@ import { ThemeProvider } from "./theme-provider";
 import { useKeyMe } from "@/hooks/use-key";
 import { useAuthStore } from "@/store/key-store";
 import SmoothScroll from "@/components/smooth-scroll";
+import { Analytics } from "@vercel/analytics/next";
 
 const AuthInitializer = () => {
     const token = useAuthStore((state) => state.token);
@@ -34,6 +35,7 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
                 disableTransitionOnChange
             >
                 {children}
+                <Analytics />
                 <Toaster position="top-center" />
             </ThemeProvider>
         </QueryProvider>
